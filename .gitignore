@@ -1,0 +1,2 @@
+# Symlinks created by Bazel into the output tree
+/bazel-*
