@@ -63,3 +63,53 @@ The required component is highlighted below:
 
 - Microsoft Learn: <https://learn.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-error-lnk1104>
 - Stack Overflow: <https://stackoverflow.com/questions/22426367/fatal-error-lnk1104-cannot-open-file-msvcrt-lib>
+
+## clang-tidy Doesn't Work on Windows
+
+### Problem
+
+`bazel build --config=lint` fails on Windows, `toolchains_llvm` which clang-tidy cames from hasn't Windows build, and the `tools/lint/BUILD.bazel` needs a local `clang-tidy.exe` which I couldn't get Bazel to accept, no matter what I did.
+
+Using the filename (`src = "clang-tidy.exe"`) makes Bazel look for it as a source file inside the package:
+
+```text
+ERROR: Creating symlink tools/lint/clang_tidy [for tool] failed:
+missing input file '//tools/lint:clang-tidy.exe'
+```
+
+Using the real install path (`src = "C:/Program Files/LLVM/bin/clang-tidy.exe"`) is parsed as a label too — and labels can't start with `/`:
+
+```text
+ERROR: invalid label 'C:/Program Files/LLVM/bin/clang-tidy.exe' ...
+target names may not start with '/'
+```
+
+### Cause
+
+1. `toolchains_llvm` has no Windows toolchain — [toolchains_llvm#4](https://github.com/bazel-contrib/toolchains_llvm/issues/4).
+2. `native_binary.src` takes a **Bazel label**, not a filesystem path. Bazel is hermetic on purpose — it won't reach into `C:\Program Files\` on its own. To use a system binary you'd have to either copy the exe into the package or expose the install dir as a `new_local_repository`. Both are brittle and per-machine.
+
+### Solution
+
+Moved to WSL. 
+SHAME ON WINDOWNS USERs 
+
+```bash
+bazel build //main:LibraryManagementSystem --config=lint
+```
+
+Build and run still work fine on native Windows, only the linter needs WSL.
+
+### References
+
+- <https://github.com/bazel-contrib/toolchains_llvm/issues/4>
+
+## -- TEMPLATE --
+
+### Problem
+
+### Cause
+
+### Solution
+
+### References
