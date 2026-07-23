@@ -18,11 +18,12 @@ cd project-name
 
 ## 🛠 Usage
 
-Run the app:
+### Build & Run
 
 ```bash
 bazel build //main:LibraryManagementSystem
 bazel run //main:LibraryManagementSystem
+bazel build //main:LibraryManagementSystem --config=lint
 ```
 
 ## 🧰 Tech Stack

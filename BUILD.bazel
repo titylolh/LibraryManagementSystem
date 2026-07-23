@@ -1,0 +1,6 @@
+exports_files(
+    [
+        ".clang-tidy",
+    ],
+    visibility = ["//:__subpackages__"],
+)

@@ -1,0 +1,19 @@
+load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
+package(default_visibility = ["//:__subpackages__"])
+
+native_binary(
+    name = "clang_tidy",
+    src = select(
+        {
+            "@bazel_tools//src/conditions:linux_x86_64": "@llvm_toolchain_llvm//:bin/clang-tidy",
+            "@bazel_tools//src/conditions:linux_aarch64": "@llvm_toolchain_llvm//:bin/clang-tidy",
+            "@bazel_tools//src/conditions:darwin_x86_64": "@llvm_toolchain_llvm//:bin/clang-tidy",
+            "@bazel_tools//src/conditions:darwin_arm64": "@llvm_toolchain_llvm//:bin/clang-tidy",
+            # llvm_toolchain doesn't support windows: https://github.com/bazel-contrib/toolchains_llvm/issues/4
+            # as a workaround, you can download exes from
+            #  and make available locally.
+            "@bazel_tools//src/conditions:windows_x64": "clang-tidy.exe",
+        },
+    ),
+    out = "clang_tidy",
+)

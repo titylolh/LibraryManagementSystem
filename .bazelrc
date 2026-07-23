@@ -1,0 +1,1 @@
+common:lint --aspects=//tools/lint:linters.bazel%clang_tidy
