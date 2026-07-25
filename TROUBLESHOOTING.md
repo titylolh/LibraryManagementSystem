@@ -57,7 +57,7 @@ Modify your Visual Studio Build Tools installation and ensure the following comp
 
 The required component is highlighted below:
 
-![Required Visual Studio Build Tools components](img/MSVC.png)
+![Required Visual Studio Build Tools components](assets/images/MSVC.png)
 
 ## References
 

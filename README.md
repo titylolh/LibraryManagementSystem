@@ -24,6 +24,7 @@ cd project-name
 bazel build //main:LibraryManagementSystem
 bazel run //main:LibraryManagementSystem
 bazel build //main:LibraryManagementSystem --config=lint
+bazel run //tools/format
 ```
 
 ## 🧰 Tech Stack
