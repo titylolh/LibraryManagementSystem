@@ -23,6 +23,7 @@ cd project-name
 ```bash
 bazel build //main:LibraryManagementSystem
 bazel run //main:LibraryManagementSystem
+bazel test //...
 bazel build //main:LibraryManagementSystem --config=lint
 bazel run //tools/format
 ```
