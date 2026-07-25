@@ -4,5 +4,8 @@ cc_library(
     name = "queue",
     srcs = ["queue.c"],
     hdrs = ["queue.h"],
-    visibility = ["//main:__pkg__"],
+    visibility = [
+        "//main:__pkg__",
+        "//tests/lib/queue:__pkg__",
+    ],
 )
