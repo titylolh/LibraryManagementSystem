@@ -5,35 +5,113 @@ I am creating this project with the intention of documenting all my struggles an
 
 ## 📸 Demo
 
-NOT DONE YET 
+> 🚧 Not done yet.
+
+## 📋 Prerequisites
+
+This project uses **Bazel** as the build system and is designed to work in different operating systems.
+
+Make sure you have the following tools installed:
+
+- **Bazel**
+- **C/C++ compiler** (GCC or Clang)
+- **Clang / clang-tidy**
+- **Valgrind** (optional, for memory checking)
+
+> Having build issues? See `TROUBLESHOOTING.md`.
 
 ## 📦 Installation
 
-Clone the repo and install dependencies:
+Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/project-name.git
-cd project-name
+git clone https://github.com/titylolh/LibraryManagementSystem.git
+cd LibraryManagementSystem
 ```
 
 ## 🛠 Usage
 
-### Build & Run
+### Build
 
 ```bash
 bazel build //main:LibraryManagementSystem
+```
+
+### Run
+
+```bash
 bazel run //main:LibraryManagementSystem
+```
+
+### Run all tests
+
+```bash
 bazel test //...
+```
+
+### Run clang-tidy
+
+```bash
 bazel build //main:LibraryManagementSystem --config=lint
+```
+
+### Format the code
+
+```bash
 bazel run //tools/format
 ```
 
+## 🔍 Valgrind
+
+Valgrind is used to detect memory leaks and memory-related issues.
+
+### Build in Debug Mode
+
+Before running Valgrind, build the project in debug mode:
+
+```bash
+bazel build \
+  --compilation_mode=dbg \
+  //main:LibraryManagementSystem
+```
+
+Use valgrind to check for memory leaks:
+
+``` bash
+valgrind \
+  --leak-check=full \
+  --track-origins=yes \
+  bazel-bin/main/LibraryManagementSystem
+```
+
+### Run Valgrind Tests
+
+Run the leak test:
+
+```bash
+bazel test \
+  --compilation_mode=dbg \
+  --test_output=all \
+  --run_under="valgrind --leak-check=full --error-exitcode=1" \
+  //tests/tools/valgrind:leak_test
+```
+
+View the Valgrind output:
+
+```bash
+cat $(bazel info bazel-testlogs)/tests/tools/valgrind/leak_test/test.log
+```
+
+> **Note:** This test intentionally leaks memory, so it is expected to fail when run with Valgrind.
+
 ## 🧰 Tech Stack
 
-- BAZEL
-- C/C++
+* C
+* Bazel
+* GoogleTest
+* Valgrind
 
 ## 📄 License
 
-MIT License  
+MIT License 
 See `LICENSE` file for details.
