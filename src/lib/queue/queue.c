@@ -1,4 +1,4 @@
-#include "lib/queue/queue.h"
+#include "src/lib/queue/queue.h"
 #include <stdio.h>
 
 void printHelloWorld(void) {
