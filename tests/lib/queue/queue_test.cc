@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "lib/queue/queue.h"
+#include "src/lib/queue/queue.h"
 }
 
 TEST(QueueTest, PrintHelloWorldRuns) {

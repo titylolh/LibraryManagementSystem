@@ -5,7 +5,7 @@ cc_test(
     size = "small",
     srcs = ["queue_test.cc"],
     deps = [
-        "//lib/queue",
+        "//src/lib/queue",
         "@googletest//:gtest_main",
     ],
 )
