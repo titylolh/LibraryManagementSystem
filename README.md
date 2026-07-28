@@ -34,13 +34,13 @@ cd LibraryManagementSystem
 ### Build
 
 ```bash
-bazel build //main:LibraryManagementSystem
+bazel build //src/main:LibraryManagementSystem
 ```
 
 ### Run
 
 ```bash
-bazel run //main:LibraryManagementSystem
+bazel run //src/main:LibraryManagementSystem
 ```
 
 ### Run all tests
@@ -52,7 +52,7 @@ bazel test //...
 ### Run clang-tidy
 
 ```bash
-bazel build //main:LibraryManagementSystem --config=lint
+bazel build //src/main:LibraryManagementSystem --config=lint
 ```
 
 ### Format the code
@@ -72,7 +72,7 @@ Before running Valgrind, build the project in debug mode:
 ```bash
 bazel build \
   --compilation_mode=dbg \
-  //main:LibraryManagementSystem
+  //src/main:LibraryManagementSystem
 ```
 
 Use valgrind to check for memory leaks:
@@ -81,7 +81,7 @@ Use valgrind to check for memory leaks:
 valgrind \
   --leak-check=full \
   --track-origins=yes \
-  bazel-bin/main/LibraryManagementSystem
+  bazel-bin/src/main/LibraryManagementSystem
 ```
 
 ### Run Valgrind Tests
@@ -99,19 +99,30 @@ bazel test \
 View the Valgrind output:
 
 ```bash
-cat $(bazel info bazel-testlogs)/tests/tools/valgrind/leak_test/test.log
+cat bazel-testlogs/tests/tools/valgrind/leak_test/test.log
 ```
 
 > **Note:** This test intentionally leaks memory, so it is expected to fail when run with Valgrind.
+
+## 📊 Benchmarks
+
+Benchmarks are used to measure the performance of the library and compare changes over time. They help identify performance regressions and evaluate the impact of optimizations.
+
+Run a benchmark:
+
+```bash
+bazel run //src/benchmark:queue_benchmark
+```
 
 ## 🧰 Tech Stack
 
 * C
 * Bazel
 * GoogleTest
+* GoogleBenchmark
 * Valgrind
 
 ## 📄 License
 
-MIT License 
+MIT License <br>
 See `LICENSE` file for details.
