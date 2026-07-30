@@ -1,8 +1,19 @@
 load("@rules_cc//cc:cc_library.bzl", "cc_library")
 
+config_setting(
+    name = "circular",
+    flag_values = {
+        "//:circular": "true",
+    },
+    visibility = ["//tests/lib/queue:__pkg__"],
+)
+
 cc_library(
     name = "queue",
-    srcs = ["queue.c"],
+    srcs = select({
+        ":circular": ["queue_circular.c"],
+        "//conditions:default": ["queue.c"],
+    }),
     hdrs = ["queue.h"],
     visibility = [
         "//src/benchmark:__pkg__",

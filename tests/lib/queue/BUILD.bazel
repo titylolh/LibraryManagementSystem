@@ -3,7 +3,10 @@ load("@rules_cc//cc:cc_test.bzl", "cc_test")
 cc_test(
     name = "queue_test",
     size = "small",
-    srcs = ["queue_test.cc"],
+    srcs = select({
+        "//src/lib/queue:circular": ["queue_circular_test.cc"],
+        "//conditions:default": ["queue_test.cc"],
+    }),
     deps = [
         "//src/lib/queue",
         "@googletest//:gtest_main",
