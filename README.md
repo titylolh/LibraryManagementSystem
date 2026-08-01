@@ -114,6 +114,22 @@ Run a benchmark:
 bazel run //src/benchmark:queue_benchmark
 ```
 
+## 🚩 Feature Flags
+
+The project uses Bazel build settings to enable or disable experimental features at build time.
+
+Build the application with the custom queue implementation:
+
+```bash
+bazel build //src/main:LibraryManagementSystem --//:circular=true
+```
+
+Run the application with the custom queue implementation:
+
+```bash
+bazel run //src/main:LibraryManagementSystem --//:circular=true
+```
+
 ## 🧰 Tech Stack
 
 * C
