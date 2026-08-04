@@ -8,3 +8,12 @@ cc_binary(
         "@google_benchmark//:benchmark",
     ],
 )
+
+cc_binary(
+    name = "queue_circular_benchmark",
+    srcs = ["queue_circular_benchmark.cc"],
+    deps = [
+        "//src/lib/queue",
+        "@google_benchmark//:benchmark",
+    ],
+)
