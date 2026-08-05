@@ -111,7 +111,7 @@ Benchmarks are used to measure the performance of the library and compare change
 Run a benchmark:
 
 ```bash
-bazel run //src/benchmark:queue_benchmark
+bazel run //benchmark/lib/queue:queue_benchmark  
 ```
 
 ## 🚩 Feature Flags
