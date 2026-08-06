@@ -16,7 +16,7 @@ cc_library(
     }),
     hdrs = ["queue.h"],
     visibility = [
-        "//src/benchmark:__pkg__",
+        "//benchmark/lib/queue:__pkg__",
         "//src/main:__pkg__",
         "//tests/lib/queue:__pkg__",
     ],
