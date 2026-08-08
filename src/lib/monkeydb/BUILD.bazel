@@ -1,0 +1,10 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
+cc_library(
+    name = "monkeydb",
+    srcs =  ["monkeydb.c"],
+    hdrs = ["monkeydb.h"],
+    visibility = [
+        "//src/main:__pkg__",
+    ],
+)
